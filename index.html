@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Millenium Immo Conseil – L'expertise immobilière à Bordeaux Métropole</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── ROOT ───────────────────────────────── */
+    :root {
+      --gold:       #C9A96E;
+      --gold-light: #DFC08A;
+      --dark:       #111111;
+      --gray:       #666;
+      --light-bg:   #F3F2EF;
+      --white:      #FFFFFF;
+      --font:       'Raleway', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--dark); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* ── HEADER ─────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 300;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .header-inner {
+      padding: 0 20px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* hamburger */
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 10;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 1px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* mobile nav drawer */
+    .main-nav {
+      display: none;
+      position: fixed;
+      top: 60px; left: 0; right: 0;
+      background: rgba(255,255,255,0.99);
+      padding: 24px 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      flex-direction: column;
+      gap: 18px;
+      z-index: 290;
+    }
+    .main-nav.open { display: flex; }
+
+    .main-nav a {
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .main-nav a:hover, .main-nav a.active { color: var(--gold); }
+
+    /* desktop header override */
+    @media (min-width: 1024px) {
+      .header-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 40px;
+        height: 70px;
+      }
+      .logo img { height: 44px; }
+      .nav-toggle { display: none; }
+      .main-nav {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        gap: 26px;
+        padding: 0;
+        background: none;
+        border: none;
+      }
+      .main-nav a { font-size: 0.7rem; }
+    }
+
+    /* ── HERO ───────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 72vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Image container – <img> gives sharper rendering than background-image */
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      display: block;
+    }
+
+    /* overlay bleu unique : teinture bleue/marine + assombrissement pour le texte */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(6, 18, 68, 0.62) 0%,
+        rgba(8, 22, 78, 0.46) 40%,
+        rgba(10, 28, 88, 0.22) 70%,
+        rgba(12, 32, 92, 0.06) 100%
+      );
+    }
+
+    .hero-body {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 90px 20px 40px;
+    }
+
+    .hero-text { max-width: 100%; }
+
+    .hero-text h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-text h1 .gold { color: var(--gold); }
+
+    .hero-text p {
+      color: rgba(255,255,255,0.78);
+      font-size: 0.88rem;
+      line-height: 1.78;
+      margin-bottom: 28px;
+      max-width: 440px;
+    }
+
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #111;
+      padding: 12px 22px;
+      font-family: var(--font);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .btn-ghost {
+      background: rgba(0,0,0,0.30);
+      color: var(--white);
+      padding: 11px 22px;
+      font-family: var(--font);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-ghost:hover { border-color: #fff; background: rgba(0,0,0,0.50); }
+
+    /* Hero strip 4 features */
+    .hero-strip {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #ffffff;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .hero-strip-item {
+      padding: 18px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border-right: 1px solid rgba(0,0,0,0.07);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .hero-strip-item:nth-child(2n) { border-right: none; }
+    .hero-strip-item:nth-child(3),
+    .hero-strip-item:nth-child(4) { border-bottom: none; }
+
+    .strip-icon {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      color: var(--gold);
+    }
+
+    .strip-text h3 {
+      color: var(--dark);
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+
+    .strip-text p {
+      color: var(--gray);
+      font-size: 0.66rem;
+      line-height: 1.5;
+    }
+
+    /* hero desktop */
+    @media (min-width: 768px) {
+      .hero-strip { grid-template-columns: repeat(4, 1fr); }
+      .hero-strip-item { padding: 22px 20px; border-bottom: none; }
+      .hero-strip-item:nth-child(2n) { border-right: 1px solid rgba(0,0,0,0.07); }
+      .hero-strip-item:last-child { border-right: none; }
+      .strip-icon { width: 30px; height: 30px; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-body {
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 120px 40px 60px;
+      }
+      .hero-text { max-width: 560px; }
+      .hero-text h1 { font-size: 3rem; }
+      .hero-strip-item { padding: 26px 28px; }
+      .strip-icon { width: 34px; height: 34px; }
+      .strip-text h3 { font-size: 0.8rem; }
+      .strip-text p { font-size: 0.72rem; }
+    }
+
+    /* ── IMMO CARDS ─────────────────────────── */
+    /* Section avec fond sombre : les cards "flottent" */
+    .immo-section {
+      background: #ffffff;
+      padding: 20px 16px;
+    }
+
+    .immo-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    /* Vrai style card : border-radius + shadow */
+    .immo-card {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      box-shadow: 0 8px 36px rgba(0,0,0,0.20);
+      cursor: pointer;
+    }
+
+    .immo-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.55s ease;
+    }
+    .immo-card:hover .immo-card-bg { transform: scale(1.03); }
+
+    .immo-card.pro .immo-card-bg {
+      background-image:
+        linear-gradient(to top,
+          rgba(0,0,0,0.97) 0%,
+          rgba(0,0,0,0.82) 30%,
+          rgba(0,0,0,0.40) 58%,
+          rgba(0,0,0,0.10) 78%,
+          rgba(0,0,0,0.02) 100%),
+        url('IMG/bureaux.webp');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .immo-card.resi .immo-card-bg {
+      background-image:
+        linear-gradient(to top,
+          rgba(0,0,0,0.92) 0%,
+          rgba(0,0,0,0.72) 32%,
+          rgba(0,0,0,0.34) 60%,
+          rgba(0,0,0,0.08) 80%,
+          rgba(0,0,0,0.01) 100%),
+        url('IMG/residentiel.jpg');
+      background-size: cover;
+      background-position: center 40%;
+    }
+
+    .immo-card-body {
+      position: relative;
+      z-index: 2;
+      padding: 30px 28px;
+    }
+
+    .immo-label {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .immo-card-body h2 {
+      color: var(--white);
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    .immo-card-body p {
+      color: rgba(255,255,255,0.62);
+      font-size: 0.8rem;
+      line-height: 1.72;
+      margin-bottom: 22px;
+    }
+
+    .btn-savoir {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 9px 16px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-savoir:hover { border-color: var(--gold); color: var(--gold); }
+
+    @media (min-width: 640px) {
+      .immo-section { padding: 16px; }
+      .immo-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+      .immo-card { min-height: 400px; }
+      .immo-card-body { padding: 36px 36px; }
+      .immo-card-body h2 { font-size: 2rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .immo-section { padding: 20px 24px; }
+      .immo-card { min-height: 440px; }
+      .immo-card-body { padding: 44px 48px; }
+      .immo-card-body h2 { font-size: 2.3rem; }
+    }
+
+    /* ── POURQUOI ───────────────────────────── */
+    .pourquoi {
+      padding: 56px 20px;
+      background: var(--white);
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: block;
+      color: var(--gold);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.25;
+      margin-bottom: 40px;
+    }
+
+    .pourquoi-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* 5e item centré sur mobile */
+    .pourquoi-item:last-child { grid-column: span 2; max-width: 260px; margin: 0 auto; }
+
+    .pourquoi-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 22px 14px;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .pourquoi-item:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.07); transform: translateY(-2px); }
+
+    .p-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+
+    .pourquoi-item h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    .pourquoi-item p {
+      font-size: 0.72rem;
+      color: var(--gray);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    @media (min-width: 640px) {
+      .pourquoi { padding: 72px 32px; }
+      .section-h2 { font-size: 1.85rem; }
+      .pourquoi-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .pourquoi-item:last-child { grid-column: auto; max-width: none; margin: 0; }
+    }
+
+    @media (min-width: 1024px) {
+      .pourquoi { padding: 96px 40px; }
+      .section-h2 { font-size: 2.1rem; margin-bottom: 56px; }
+      .pourquoi-grid { grid-template-columns: repeat(5, 1fr); gap: 20px; }
+      .p-icon { width: 58px; height: 58px; }
+      .pourquoi-item { padding: 28px 16px; }
+    }
+
+    /* ── SECTEURS ───────────────────────────── */
+    .secteurs {
+      background: #15213A;
+      padding: 56px 20px;
+    }
+
+    .secteurs-wrap { max-width: 1280px; margin: 0 auto; }
+
+    .secteurs-head { text-align: center; margin-bottom: 36px; }
+
+    .secteurs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .secteur-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .secteur-item:hover { transform: translateY(-3px); }
+
+    .secteur-thumb {
+      width: 100%;
+      aspect-ratio: 2/3;
+      overflow: hidden;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .secteur-thumb-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.35s;
+    }
+    .secteur-item:hover .secteur-thumb-bg { transform: scale(1.06); }
+
+    .secteur-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.38) 0%, transparent 50%);
+      z-index: 1;
+    }
+
+    .s1  { background: linear-gradient(155deg, #6A7EA8 0%, #8A9EC8 100%); }
+    .s2  { background: linear-gradient(155deg, #78906A 0%, #96B07A 100%); }
+    .s3  { background: linear-gradient(155deg, #9C8560 0%, #BCA878 100%); }
+    .s4  { background: linear-gradient(155deg, #78689A 0%, #9888B8 100%); }
+    .s5  { background: linear-gradient(155deg, #6A8878 0%, #88A898 100%); }
+    .s6  { background: linear-gradient(155deg, #887868 0%, #A89888 100%); }
+    .s7  { background: linear-gradient(155deg, #687888 0%, #88A0B0 100%); }
+    .s8  { background: linear-gradient(155deg, #788868 0%, #96A880 100%); }
+    .s9  { background: linear-gradient(155deg, #886878 0%, #A88898 100%); }
+    .s10 { background: linear-gradient(155deg, #688898 0%, #84A8B8 100%); }
+    .s11 { background: linear-gradient(155deg, #888868 0%, #A8A882 100%); }
+
+    .secteur-name {
+      font-size: 0.56rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.82);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* titre de la section secteurs sur fond bleu */
+    .secteurs .section-h2 { color: var(--white); }
+
+    .secteurs-foot { text-align: center; }
+
+    .btn-outline-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.65);
+      padding: 12px 26px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn-outline-dark:hover { background: var(--white); color: #15213A; border-color: var(--white); }
+
+    @media (min-width: 640px) {
+      .secteurs { padding: 72px 32px; }
+      .secteurs-grid { grid-template-columns: repeat(6, 1fr); }
+      .secteur-name { font-size: 0.6rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .secteurs { padding: 80px 40px; }
+      .secteurs-head { margin-bottom: 48px; }
+      .secteurs-grid { grid-template-columns: repeat(11, 1fr); gap: 8px; margin-bottom: 40px; }
+      .secteur-name { font-size: 0.62rem; }
+    }
+
+    /* ── CTA BANNER ─────────────────────────── */
+    /* ── CTA : layout divisé (photo gauche | panneau crème droite) ── */
+    .cta-section {
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+    }
+
+    .cta-photo-side {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .cta-photo-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.52)),
+        url('IMG/pont-de-pierre.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .cta-panel-side {
+      background: #EDE5D5;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .cta-title {
+      font-family: var(--font);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #15193A;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .cta-title .cta-gold { color: var(--gold); }
+
+    .cta-desc {
+      color: #666;
+      font-size: 0.86rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .cta-btns { display: flex; flex-direction: column; gap: 10px; }
+
+    .btn-cta-gold {
+      background: var(--gold);
+      color: #111;
+      padding: 13px 22px;
+      font-family: var(--font);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn-cta-gold:hover { background: var(--gold-light); }
+
+    .btn-cta-dark {
+      background: transparent;
+      color: #15193A;
+      padding: 12px 22px;
+      font-family: var(--font);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid #15193A;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-cta-dark:hover { background: rgba(21,25,58,0.06); }
+
+    @media (min-width: 768px) {
+      .cta-section {
+        flex-direction: row;
+        min-height: 460px;
+      }
+      .cta-photo-side {
+        flex: 1;
+        height: auto;
+      }
+      .cta-panel-side {
+        width: 52%;
+        flex-shrink: 0;
+        padding: 64px 56px;
+        justify-content: center;
+      }
+      .cta-title { font-size: 2.2rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .cta-panel-side { padding: 80px 72px; }
+      .cta-title { font-size: 2.5rem; }
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: #15213A;
+      padding: 48px 20px 24px;
+    }
+
+    .footer-wrap { max-width: 1280px; margin: 0 auto; }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 22px;
+    }
+
+    .f-logo {
+      height: 38px;
+      width: auto;
+      display: block;
+      margin-bottom: 14px;
+      filter: brightness(0) invert(1);
+      object-fit: contain;
+    }
+
+    .f-brand-desc {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.78rem;
+      line-height: 1.8;
+      max-width: 230px;
+    }
+
+    .f-col-title {
+      color: var(--white);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .f-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .f-links a {
+      color: rgba(255,255,255,0.42);
+      text-decoration: none;
+      font-size: 0.78rem;
+      transition: color 0.18s;
+    }
+    .f-links a:hover { color: var(--gold); }
+
+    .f-contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      color: rgba(255,255,255,0.42);
+      font-size: 0.78rem;
+      line-height: 1.55;
+    }
+    .f-contact-row svg { color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    .footer-bottom-links { display: flex; gap: 18px; }
+    .footer-bottom a { color: rgba(255,255,255,0.24); text-decoration: none; transition: color 0.18s; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    @media (min-width: 640px) {
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+    }
+
+    @media (min-width: 1024px) {
+      footer { padding: 64px 40px 28px; }
+      .footer-top {
+        grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+        gap: 56px;
+        padding-bottom: 48px;
+        margin-bottom: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════ HEADER ══════════════════ -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo"><img src="IMG/Logo_MilleniumImmoConseil.jpg" alt="Millenium Immo Conseil"></a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#" class="active">Accueil</a>
+        <a href="#">Immobilier Professionnel</a>
+        <a href="#">Immobilier Résidentiel</a>
+        <a href="#">Investissement</a>
+        <a href="#">Honoraires</a>
+        <a href="#">À Propos</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══════════════════ HERO ══════════════════ -->
+  <section class="hero">
+    <div class="hero-media">
+      <!-- img tag = rendu plus net que background-image -->
+      <img src="IMG/place-de-la-bourse-1.jpg" alt="Place de la Bourse, Bordeaux" class="hero-photo">
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-body">
+      <div class="hero-text">
+        <h1>L'expertise immobilière<br>au service de vos projets<br><span class="gold">à Bordeaux Métropole</span></h1>
+        <p>Conseil et accompagnement sur-mesure pour la vente, l'achat et la location de biens immobiliers professionnels et résidentiels.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-primary">Découvrir nos biens &nbsp;→</a>
+          <a href="#" class="btn-ghost">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bande 4 fonctionnalités -->
+    <div class="hero-strip">
+      <div class="hero-strip-item">
+        <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+        <div class="strip-text">
+          <h3>Conseil &amp; Stratégie</h3>
+          <p>Valoriser vos actifs immobiliers.</p>
+        </div>
+      </div>
+      <div class="hero-strip-item">
+        <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+          <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+        <div class="strip-text">
+          <h3>Transaction</h3>
+          <p>Chaque étape, maîtrisée.</p>
+        </div>
+      </div>
+      <div class="hero-strip-item">
+        <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 0 1 8-8z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <div class="strip-text">
+          <h3>Connaissance du marché</h3>
+          <p>Bordeaux Métropole en détail.</p>
+        </div>
+      </div>
+      <div class="hero-strip-item">
+        <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <div class="strip-text">
+          <h3>Accompagnement sur-mesure</h3>
+          <p>Un interlocuteur dédié.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ CARDS PRO / RÉSI ══════════════════ -->
+  <!-- Fond sombre = les cards ressortent comme de vraies cartes -->
+  <section class="immo-section">
+    <div class="immo-grid">
+
+      <!-- PROFESSIONNEL -->
+      <div class="immo-card pro">
+        <div class="immo-card-bg"></div>
+        <div class="immo-card-body">
+          <span class="immo-label">Immobilier</span>
+          <h2>Professionnel</h2>
+          <p>Bureaux, murs commerciaux, entrepôts, commerces, fonds de commerce… Nous accompagnons les entreprises, investisseurs et commerçants dans tous leurs projets immobiliers.</p>
+          <a href="#" class="btn-savoir">En savoir plus &nbsp;+</a>
+        </div>
+      </div>
+
+      <!-- RÉSIDENTIEL -->
+      <div class="immo-card resi">
+        <div class="immo-card-bg"></div>
+        <div class="immo-card-body">
+          <span class="immo-label">Immobilier</span>
+          <h2>Résidentiel</h2>
+          <p>Maisons, appartements, terrains… Nous accompagnons les particuliers dans la vente ou l'achat de leurs biens avec exigence et efficacité.</p>
+          <a href="#" class="btn-savoir">En savoir plus &nbsp;+</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════ POURQUOI ══════════════════ -->
+  <section class="pourquoi">
+    <span class="eyebrow">Nos atouts</span>
+    <h2 class="section-h2">Pourquoi choisir Millenium Immo Conseil&nbsp;?</h2>
+
+    <div class="pourquoi-grid">
+
+      <div class="pourquoi-item">
+        <div class="p-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3>Expertise BtoB &amp; BtoC</h3>
+        <p>Double compétence pour répondre à tous vos projets, professionnels ou résidentiels.</p>
+      </div>
+
+      <div class="pourquoi-item">
+        <div class="p-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="20" x2="12" y2="10"/>
+            <line x1="18" y1="20" x2="18" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="16"/>
+          </svg>
+        </div>
+        <h3>Valorisation optimale</h3>
+        <p>Des stratégies sur-mesure pour valoriser au mieux chaque bien.</p>
+      </div>
+
+      <div class="pourquoi-item">
+        <div class="p-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Interlocuteur unique</h3>
+        <p>Un accompagnement personnalisé en confidentialité à chaque étape.</p>
+      </div>
+
+      <div class="pourquoi-item">
+        <div class="p-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <h3>Connaissance locale</h3>
+        <p>Maîtrise des quartiers, des prix et du tissu économique de Bordeaux.</p>
+      </div>
+
+      <div class="pourquoi-item">
+        <div class="p-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Engagement &amp; transparence</h3>
+        <p>Des honoraires clairs et une relation fondée sur la confiance.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════ SECTEURS ══════════════════ -->
+  <section class="secteurs">
+    <div class="secteurs-wrap">
+      <div class="secteurs-head">
+        <h2 class="section-h2">Nos secteurs d'intervention</h2>
+      </div>
+
+      <div class="secteurs-grid">
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s1"></div></div><span class="secteur-name">Bordeaux Centre</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s2"></div></div><span class="secteur-name">Chartrons</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s3"></div></div><span class="secteur-name">Bacalan</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s4"></div></div><span class="secteur-name">Mérignac</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s5"></div></div><span class="secteur-name">Pessac</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s6"></div></div><span class="secteur-name">Talence</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s7"></div></div><span class="secteur-name">Le Bouscat</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s8"></div></div><span class="secteur-name">Bègles</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s9"></div></div><span class="secteur-name">Bruges</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s10"></div></div><span class="secteur-name">Eysines</span></div>
+        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s11"></div></div><span class="secteur-name">Villenave d'Ornon</span></div>
+      </div>
+
+      <div class="secteurs-foot">
+        <a href="#" class="btn-outline-dark">Voir tous les secteurs &nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ CTA ══════════════════ -->
+  <section class="cta-section">
+    <!-- Gauche : photo sombre (Pont de Pierre) -->
+    <div class="cta-photo-side">
+      <div class="cta-photo-bg"></div>
+    </div>
+    <!-- Droite : panneau crème avec contenu -->
+    <div class="cta-panel-side">
+      <h2 class="cta-title">Un projet immobilier ?<br><span class="cta-gold">Parlez-nous.</span></h2>
+      <p class="cta-desc">Bénéficiez d'une estimation gratuite et d'un accompagnement sur mesure par nos experts du marché bordelais.</p>
+      <div class="cta-btns">
+        <a href="#" class="btn-cta-gold">Demander une estimation &nbsp;→</a>
+        <a href="#" class="btn-cta-dark">Nous contacter &nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-top">
+
+        <div>
+          <img src="IMG/Logo_MilleniumImmoConseil_Q_fdblc.jpg" alt="Millenium Immo Conseil" class="f-logo">
+          <p class="f-brand-desc">Votre expert immobilier professionnel et résidentiel en Bordeaux Métropole. Conseil, transaction et accompagnement sur-mesure.</p>
+        </div>
+
+        <div>
+          <p class="f-col-title">Liens Utiles</p>
+          <ul class="f-links">
+            <li><a href="#">Immobilier professionnel</a></li>
+            <li><a href="#">Immobilier résidentiel</a></li>
+            <li><a href="#">Investissement</a></li>
+            <li><a href="#">Honoraires</a></li>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="f-col-title">Informations</p>
+          <ul class="f-links">
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Nos services</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="f-col-title">Contact</p>
+          <div class="f-contact-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>+33 (0)5 XX XX XX XX</span>
+          </div>
+          <div class="f-contact-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>contact@milleniumimmoconseil.fr</span>
+          </div>
+          <div class="f-contact-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Bordeaux Métropole</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 Millenium Immo Conseil. Tous droits réservés.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Mentions légales</a>
+          <a href="#">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const nav    = document.getElementById('mainNav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    });
+    // fermer si on clique sur un lien
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.classList.remove('open');
+    }));
+  </script>
+</body>
+</html>
