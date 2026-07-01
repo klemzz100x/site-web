@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Espace admin – Millenium Immo Conseil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══════════ HEADER (minimal) ══════════ -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo"><img src="IMG/Logo_MilleniumImmoConseil.jpg" alt="Millenium Immo Conseil"></a>
+      <nav class="main-nav" id="mainNav" style="display:flex;">
+        <a href="index.html">← Retour au site</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══════════ LOGIN ══════════ -->
+  <section class="page-hero" style="padding-bottom:0;">
+    <div class="page-hero-inner">
+      <span class="eyebrow">Espace privé</span>
+      <h1>Gestion des biens</h1>
+    </div>
+  </section>
+
+  <section class="section container-narrow" id="adminLogin">
+    <form class="contact-form" id="loginForm">
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" required autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="loginPassword">Mot de passe</label>
+        <input type="password" id="loginPassword" required autocomplete="current-password">
+      </div>
+      <p class="form-feedback error" id="loginError"></p>
+      <button type="submit" class="btn-cta-gold">Se connecter →</button>
+    </form>
+  </section>
+
+  <!-- ══════════ DASHBOARD ══════════ -->
+  <section class="section hidden" id="adminDashboard">
+    <div class="container">
+      <div class="admin-toolbar">
+        <span class="admin-user" id="adminUserEmail"></span>
+        <div style="display:flex; gap:10px;">
+          <button class="btn-cta-gold" id="btnNewListing">+ Nouveau bien</button>
+          <button class="btn-cta-dark" id="btnLogout">Se déconnecter</button>
+        </div>
+      </div>
+
+      <!-- Formulaire création / édition -->
+      <div class="admin-panel hidden" id="listingForm">
+        <h3 id="listingFormTitle">Nouveau bien</h3>
+        <form id="listingFields">
+          <div class="form-row">
+            <div class="field">
+              <label for="fTitle">Titre</label>
+              <input type="text" id="fTitle" required>
+            </div>
+            <div class="field">
+              <label for="fType">Type de bien</label>
+              <select id="fType" required>
+                <option value="residentiel">Résidentiel</option>
+                <option value="professionnel">Professionnel</option>
+                <option value="investissement">Investissement</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="fPrice">Prix (€)</label>
+              <input type="number" id="fPrice" min="0" step="1" required>
+            </div>
+            <div class="field">
+              <label for="fSurface">Surface (m²)</label>
+              <input type="number" id="fSurface" min="0" step="0.1">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="fRooms">Nombre de pièces</label>
+              <input type="number" id="fRooms" min="0" step="1">
+            </div>
+            <div class="field">
+              <label for="fSecteur">Secteur</label>
+              <input type="text" id="fSecteur" list="secteursList" placeholder="Ex. Chartrons">
+              <datalist id="secteursList">
+                <option value="Bordeaux Centre"></option>
+                <option value="Chartrons"></option>
+                <option value="Bacalan"></option>
+                <option value="Mérignac"></option>
+                <option value="Pessac Centre"></option>
+                <option value="Talence"></option>
+                <option value="Le Bouscat"></option>
+                <option value="Bègles"></option>
+                <option value="Bruges"></option>
+                <option value="Eysines"></option>
+                <option value="Villenave-d'Ornon"></option>
+              </datalist>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fAddress">Adresse</label>
+            <input type="text" id="fAddress">
+          </div>
+          <div class="field">
+            <label for="fDescription">Description</label>
+            <textarea id="fDescription"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="fStatus">Statut</label>
+              <select id="fStatus">
+                <option value="disponible">Disponible</option>
+                <option value="sous_compromis">Sous compromis</option>
+                <option value="vendu">Vendu</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fPublie">Publication</label>
+              <select id="fPublie">
+                <option value="false">Brouillon (non visible)</option>
+                <option value="true">Publié (visible sur le site)</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="form-feedback error" id="listingError"></p>
+
+          <div style="display:flex; gap:12px; margin-top:6px;">
+            <button type="submit" class="btn-cta-gold">Enregistrer</button>
+            <button type="button" class="btn-cta-dark" id="btnCancelListing">Annuler</button>
+          </div>
+        </form>
+
+        <!-- Photos : actives seulement une fois le bien enregistré -->
+        <div id="photoSection" style="margin-top:28px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.08);">
+          <p class="note" id="photoHint">Enregistrez d'abord les informations du bien pour pouvoir ajouter des photos.</p>
+          <div id="photoUploadZone" class="hidden">
+            <label class="photo-dropzone" for="photoInput">Cliquez ou déposez des photos ici</label>
+            <input type="file" id="photoInput" accept="image/*" multiple class="hidden">
+            <div class="photo-preview-grid" id="photoPreviewGrid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tableau des biens -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Titre</th>
+              <th>Type</th>
+              <th>Prix</th>
+              <th>Statut</th>
+              <th>Publié</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="listingsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

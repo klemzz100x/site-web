@@ -3,18 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mentions légales – Millenium Immo Conseil</title>
-  <meta name="description" content="Mentions légales et politique de confidentialité de Millenium Immo Conseil.">
+  <title>Nos Biens – Millenium Immo Conseil</title>
+  <meta name="description" content="Découvrez tous les biens résidentiels, professionnels et d'investissement disponibles avec Millenium Immo Conseil à Bordeaux Métropole.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    .legal h2 { font-size: 1.1rem; color: var(--navy); margin: 32px 0 10px; }
-    .legal h2:first-child { margin-top: 0; }
-    .legal p, .legal li { font-size: 0.86rem; color: var(--gray); line-height: 1.8; }
-    .legal ul { padding-left: 20px; margin: 8px 0; }
-  </style>
 </head>
 <body>
 
@@ -25,7 +19,7 @@
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
       <nav class="main-nav" id="mainNav">
         <a href="index.html">Accueil</a>
-        <a href="catalogue.html">Nos Biens</a>
+        <a href="catalogue.html" class="active">Nos Biens</a>
         <a href="professionnel.html">Immobilier Professionnel</a>
         <a href="residentiel.html">Immobilier Résidentiel</a>
         <a href="investissement.html">Investissement</a>
@@ -40,39 +34,39 @@
   <section class="page-hero">
     <div class="page-hero-inner">
       <div class="breadcrumb">
-        <a href="index.html">Accueil</a><span class="sep">/</span><span class="current">Mentions légales</span>
+        <a href="index.html">Accueil</a>
+        <span class="sep">/</span>
+        <span class="current">Nos Biens</span>
       </div>
-      <span class="eyebrow">Informations légales</span>
-      <h1>Mentions <span class="gold">légales</span></h1>
+      <span class="eyebrow">Catalogue</span>
+      <h1>Découvrez nos <span class="gold">biens</span> disponibles</h1>
+      <p class="lead">Résidentiel, professionnel ou investissement — retrouvez ici l'ensemble des biens actuellement proposés par Millenium Immo Conseil sur Bordeaux Métropole.</p>
     </div>
   </section>
 
-  <!-- ══════════ CONTENU ══════════ -->
+  <!-- ══════════ CATALOGUE ══════════ -->
   <section class="section">
-    <div class="container-narrow legal">
-      <h2>Éditeur du site</h2>
-      <p>Le présent site est édité par Millenium Immo Conseil, conseil en immobilier professionnel et résidentiel, exerçant à Bordeaux Métropole.<br>
-      Email&nbsp;: contact@milleniumimmoconseil.fr — Téléphone&nbsp;: +33 (0)5 XX XX XX XX.</p>
-      <p><em>Les informations légales complètes (forme juridique, SIREN, carte professionnelle, RCP, etc.) seront précisées ici.</em></p>
+    <div class="container">
+      <div class="catalogue-filters">
+        <button class="filter-btn active" data-type="">Tous</button>
+        <button class="filter-btn" data-type="residentiel">Résidentiel</button>
+        <button class="filter-btn" data-type="professionnel">Professionnel</button>
+        <button class="filter-btn" data-type="investissement">Investissement</button>
+      </div>
 
-      <h2>Hébergement</h2>
-      <p>Le site est hébergé par l'hébergeur retenu par Millenium Immo Conseil. Les coordonnées de l'hébergeur seront indiquées dans cette section.</p>
+      <p id="catalogueLoading" class="catalogue-loading">Chargement des biens…</p>
+      <p id="catalogueEmpty" class="catalogue-empty hidden">Aucun bien ne correspond à ce filtre pour le moment. Revenez bientôt ou <a href="contact.html">contactez-nous</a> pour être informé(e) des nouveautés.</p>
+      <div id="catalogueGrid" class="listing-grid"></div>
+    </div>
+  </section>
 
-      <h2>Propriété intellectuelle</h2>
-      <p>L'ensemble des contenus présents sur ce site (textes, images, logos, charte graphique) est protégé par le droit de la propriété intellectuelle. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>
-
-      <h2>Protection des données personnelles</h2>
-      <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant.</p>
-      <ul>
-        <li>Les données collectées via le formulaire de contact servent uniquement à traiter votre demande.</li>
-        <li>Elles ne sont ni cédées, ni vendues à des tiers.</li>
-        <li>Pour exercer vos droits&nbsp;: contact@milleniumimmoconseil.fr.</li>
-      </ul>
-
-      <h2>Cookies</h2>
-      <p>Ce site peut utiliser des cookies de mesure d'audience afin d'améliorer votre expérience de navigation. Vous pouvez configurer votre navigateur pour les refuser.</p>
-
-      <p style="margin-top:32px;"><a href="contact.html" class="btn-cta-gold">Une question&nbsp;? Contactez-nous &nbsp;→</a></p>
+  <!-- ══════════ CTA ══════════ -->
+  <section class="cta-band">
+    <h2>Un bien à vendre&nbsp;?<br><span class="gold">Rejoignez notre catalogue.</span></h2>
+    <p>Estimation gratuite et accompagnement personnalisé par nos experts du marché bordelais.</p>
+    <div class="cta-btns">
+      <a href="contact.html" class="btn-cta-gold">Estimer mon bien &nbsp;→</a>
+      <a href="contact.html" class="btn-cta-dark">Nous contacter &nbsp;→</a>
     </div>
   </section>
 
@@ -81,7 +75,7 @@
     <div class="footer-wrap">
       <div class="footer-top">
         <div>
-          <img src="IMG/Logo_MilleniumImmoConseil_Q_fdblc.jpg" alt="Millenium Immo Conseil" class="f-logo">
+          <img src="IMG/Logo_MilleniumImmoConseil_Q_fdblc.jpg" alt="Millenium Immo Conseil" class="f-logo" loading="lazy" decoding="async">
           <p class="f-brand-desc">Votre expert immobilier professionnel et résidentiel en Bordeaux Métropole. Conseil, transaction et accompagnement sur-mesure.</p>
         </div>
         <div>
@@ -129,6 +123,10 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/catalogue.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
