@@ -350,9 +350,9 @@
           rgba(0,0,0,0.34) 60%,
           rgba(0,0,0,0.08) 80%,
           rgba(0,0,0,0.01) 100%),
-        url('IMG/residentiel.jpg');
+        url('IMG/residentiel-salon.jpg');
       background-size: cover;
-      background-position: center 40%;
+      background-position: center 55%;
     }
 
     .immo-card-body {
@@ -507,7 +507,7 @@
       .pourquoi-item { padding: 28px 16px; }
     }
 
-    /* ── SECTEURS ───────────────────────────── */
+    /* ── SECTEURS : carte interactive ───────── */
     .secteurs {
       background: #15213A;
       padding: 56px 20px;
@@ -515,74 +515,118 @@
 
     .secteurs-wrap { max-width: 1280px; margin: 0 auto; }
 
-    .secteurs-head { text-align: center; margin-bottom: 36px; }
+    .secteurs-head { text-align: center; margin-bottom: 28px; }
+    .secteurs .section-h2 { color: var(--white); margin-bottom: 12px; }
+    .secteurs-sub {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto;
+    }
 
-    .secteurs-grid {
+    .secteurs-layout {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-bottom: 32px;
+      grid-template-columns: 1fr;
+      gap: 22px;
+      align-items: start;
     }
 
-    .secteur-item {
+    .map-card {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.09);
+      padding: 10px;
+    }
+
+    .secteurs-map { display: block; width: 100%; height: auto; }
+
+    /* — zones — */
+    .map-zone text { pointer-events: none; font-family: var(--font); font-weight: 700; }
+    .map-zone polygon { stroke-linejoin: round; transition: fill 0.22s, stroke 0.22s, opacity 0.22s; }
+
+    .zone-other polygon { fill: #223358; stroke: rgba(255,255,255,0.07); stroke-width: 1.4; }
+    .zone-other text { fill: rgba(255,255,255,0.32); font-size: 10.5px; }
+
+    .zone-covered { cursor: pointer; }
+    .zone-covered polygon { fill: #C9A96E; fill-opacity: 0.88; stroke: rgba(255,255,255,0.25); stroke-width: 1.6; }
+    .zone-covered text { fill: #15213A; font-size: 12.5px; }
+    .zone-covered:hover polygon,
+    .zone-covered.is-active polygon { fill: #EBD4A6; fill-opacity: 1; stroke: #FFFFFF; stroke-width: 2.4; }
+    .zone-covered.is-active text { fill: #101A2E; }
+    .zone-covered:focus { outline: none; }
+    .zone-covered:focus-visible polygon { stroke: #FFFFFF; stroke-width: 3; }
+
+    /* — eau — */
+    .map-river { fill: none; stroke: #2B4776; stroke-width: 30; stroke-linecap: round; }
+    .map-river-core { fill: none; stroke: #3E679E; stroke-width: 13; stroke-linecap: round; opacity: 0.65; }
+    .map-bridge { stroke: rgba(255,255,255,0.4); stroke-width: 2.4; stroke-linecap: round; }
+
+    /* — panneau — */
+    .map-panel { display: flex; flex-direction: column; gap: 18px; }
+
+    .map-legend {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: transform 0.2s;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.5);
     }
-    .secteur-item:hover { transform: translateY(-3px); }
+    .map-legend span { display: inline-flex; align-items: center; gap: 7px; }
+    .map-legend i { width: 12px; height: 12px; display: inline-block; }
+    .lg-gold  { background: #C9A96E; }
+    .lg-other { background: #223358; border: 1px solid rgba(255,255,255,0.14); }
+    .lg-river { background: #3E679E; height: 4px !important; width: 18px !important; border-radius: 2px; }
 
-    .secteur-thumb {
-      width: 100%;
-      aspect-ratio: 2/3;
-      overflow: hidden;
-      border-radius: 2px;
-      position: relative;
+    .map-info {
+      background: rgba(255,255,255,0.05);
+      border-left: 2px solid var(--gold);
+      padding: 18px 20px;
+      min-height: 150px;
     }
-
-    .secteur-thumb-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.35s;
-    }
-    .secteur-item:hover .secteur-thumb-bg { transform: scale(1.06); }
-
-    .secteur-thumb::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.38) 0%, transparent 50%);
-      z-index: 1;
-    }
-
-    .s1  { background-image: url('IMG/bordeaux-centre.jpg'); }
-    .s2  { background-image: url('IMG/chartrons.jpg'); }
-    .s3  { background-image: url('IMG/bacalan.webp'); }
-    .s4  { background-image: url('IMG/merignac.jpg'); }
-    .s5  { background-image: url('IMG/pessac-centre.jpg'); }
-    .s6  { background-image: url('IMG/talence.jpg'); }
-    .s7  { background-image: url('IMG/le-bouscat.jpg'); }
-    .s8  { background-image: url('IMG/begles.jpg'); }
-    .s9  { background-image: url('IMG/bruges.jpg'); }
-    .s10 { background-image: url('IMG/eysine.jpg'); }
-    .s11 { background-image: url('IMG/villenave.avif'); }
-
-    .secteur-name {
+    .map-info-kind {
+      display: block;
+      color: var(--gold);
       font-size: 0.56rem;
       font-weight: 700;
-      color: rgba(255,255,255,0.82);
-      text-align: center;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .map-info-name {
+      color: var(--white);
+      font-size: 1.15rem;
+      font-weight: 700;
       line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .map-info-desc {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.8rem;
+      line-height: 1.7;
     }
 
-    /* titre de la section secteurs sur fond bleu */
-    .secteurs .section-h2 { color: var(--white); }
+    .map-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .map-chip {
+      font-family: var(--font);
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.62);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 6px 11px;
+      cursor: pointer;
+      transition: color 0.18s, border-color 0.18s, background 0.18s;
+    }
+    .map-chip:hover { color: var(--white); border-color: rgba(255,255,255,0.45); }
+    .map-chip.is-active {
+      color: #15213A;
+      background: var(--gold);
+      border-color: var(--gold);
+    }
 
-    .secteurs-foot { text-align: center; }
+    .secteurs-foot { text-align: center; margin-top: 8px; }
 
     .btn-outline-dark {
       display: inline-flex;
@@ -601,17 +645,22 @@
     }
     .btn-outline-dark:hover { background: var(--white); color: #15213A; border-color: var(--white); }
 
+    /* labels illisibles sous 620px : la liste de pastilles prend le relais */
+    @media (max-width: 620px) {
+      .secteurs-map text { display: none; }
+    }
+
     @media (min-width: 640px) {
       .secteurs { padding: 72px 32px; }
-      .secteurs-grid { grid-template-columns: repeat(6, 1fr); }
-      .secteur-name { font-size: 0.6rem; }
+      .secteurs-head { margin-bottom: 36px; }
     }
 
     @media (min-width: 1024px) {
-      .secteurs { padding: 80px 40px; }
-      .secteurs-head { margin-bottom: 48px; }
-      .secteurs-grid { grid-template-columns: repeat(11, 1fr); gap: 8px; margin-bottom: 40px; }
-      .secteur-name { font-size: 0.62rem; }
+      .secteurs { padding: 88px 40px; }
+      .secteurs-layout { grid-template-columns: minmax(0, 1fr) 320px; gap: 32px; }
+      .map-card { padding: 16px; }
+      .map-panel { position: sticky; top: 86px; }
+      .secteurs-foot { text-align: left; margin-top: 4px; }
     }
 
     /* ── CTA BANNER ─────────────────────────── */
@@ -743,12 +792,11 @@
       margin-bottom: 22px;
     }
 
+    .f-logo-link { display: inline-block; margin-bottom: 16px; }
     .f-logo {
-      height: 38px;
+      height: 46px;
       width: auto;
       display: block;
-      margin-bottom: 14px;
-      filter: brightness(0) invert(1);
       object-fit: contain;
     }
 
@@ -1089,7 +1137,6 @@
         <a href="catalogue.html">Nos Biens</a>
         <a href="professionnel.html">Immobilier Professionnel</a>
         <a href="residentiel.html">Immobilier Résidentiel</a>
-        <a href="investissement.html">Investissement</a>
         <a href="honoraires.html">Honoraires</a>
         <a href="a-propos.html">À Propos</a>
         <a href="contact.html">Contact</a>
@@ -1182,7 +1229,7 @@
             <div class="stat-label">de clients<br>satisfaits</div>
           </div>
           <div class="stat">
-            <div class="stat-num">15 ans</div>
+            <div class="stat-num">20 ans</div>
             <div class="stat-label">d'expertise<br>du marché local</div>
           </div>
         </div>
@@ -1205,6 +1252,14 @@
           <div class="express-field">
             <label for="exp-prenom">Prénom</label>
             <input type="text" id="exp-prenom" name="prenom" autocomplete="given-name" required>
+          </div>
+          <div class="express-field">
+            <label for="exp-nom">Nom</label>
+            <input type="text" id="exp-nom" name="nom" autocomplete="family-name" required>
+          </div>
+          <div class="express-field">
+            <label for="exp-email">Email</label>
+            <input type="email" id="exp-email" name="email" autocomplete="email" placeholder="prenom.nom@email.fr" required>
           </div>
           <div class="express-field">
             <label for="exp-tel">Téléphone</label>
@@ -1349,35 +1404,187 @@
   </section>
 
   <!-- ══════════════════ SECTEURS ══════════════════ -->
-  <section class="secteurs">
+  <section class="secteurs" id="secteurs">
     <div class="secteurs-wrap">
       <div class="secteurs-head">
         <h2 class="section-h2">Nos secteurs d'intervention</h2>
+        <p class="secteurs-sub">Bordeaux et sa métropole. Survolez ou sélectionnez une zone dorée pour découvrir le secteur.</p>
       </div>
 
-      <div class="secteurs-grid">
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s1"></div></div><span class="secteur-name">Bordeaux Centre</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s2"></div></div><span class="secteur-name">Chartrons</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s3"></div></div><span class="secteur-name">Bacalan</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s4"></div></div><span class="secteur-name">Mérignac</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s5"></div></div><span class="secteur-name">Pessac</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s6"></div></div><span class="secteur-name">Talence</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s7"></div></div><span class="secteur-name">Le Bouscat</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s8"></div></div><span class="secteur-name">Bègles</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s9"></div></div><span class="secteur-name">Bruges</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s10"></div></div><span class="secteur-name">Eysines</span></div>
-        <div class="secteur-item"><div class="secteur-thumb"><div class="secteur-thumb-bg s11"></div></div><span class="secteur-name">Villenave d'Ornon</span></div>
-      </div>
+      <div class="secteurs-layout">
 
-      <div class="secteurs-foot">
-        <a href="contact.html" class="btn-outline-dark">Voir tous les secteurs &nbsp;→</a>
+        <!-- Carte schématique de la métropole bordelaise -->
+        <div class="map-card">
+          <svg class="secteurs-map" viewBox="0 0 820 745" role="img"
+               aria-label="Carte schématique de Bordeaux Métropole indiquant nos secteurs d'intervention"
+               xmlns="http://www.w3.org/2000/svg">
+
+            <!-- La Garonne / la Dordogne -->
+            <path class="map-river" d="M 548,-20 C 545,90 534,150 528,200 C 520,266 512,330 504,392 C 498,440 494,470 496,510 C 499,560 512,610 528,660 C 540,700 548,730 552,770"/>
+            <path class="map-river" d="M 830,52 C 758,72 668,104 596,142 C 570,156 548,168 536,182"/>
+            <path class="map-river-core" d="M 548,-20 C 545,90 534,150 528,200 C 520,266 512,330 504,392 C 498,440 494,470 496,510 C 499,560 512,610 528,660 C 540,700 548,730 552,770"/>
+            <path class="map-river-core" d="M 830,52 C 758,72 668,104 596,142 C 570,156 548,168 536,182"/>
+
+            <!-- Communes hors secteurs -->
+            <g class="zones-other">
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="57.5,150.5 119.7,152.9 190.7,151.3 190.0,210.4 190.8,265.5 121.8,265.5 55.5,261.9 57.6,208.5"/>
+          <text text-anchor="middle"><tspan x="122.5" y="205.0">Saint-Médard</tspan><tspan x="122.5" y="217.0">en-Jalles</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="226.8,85.8 292.5,87.1 351.1,84.1 354.9,137.7 354.8,189.6 293.2,188.5 232.2,187.0 232.8,139.6"/>
+          <text text-anchor="middle"><tspan x="291.0" y="141.0">Blanquefort</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="365.6,60.4 408.1,56.2 457.5,60.4 457.0,110.9 460.8,160.0 410.8,161.7 364.9,161.3 361.4,107.5"/>
+          <text text-anchor="middle"><tspan x="411.0" y="112.5">Parempuyre</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="59.8,283.8 117.6,286.6 172.2,283.5 168.8,331.2 169.9,373.4 114.5,377.5 56.2,376.9 58.5,331.6"/>
+          <text text-anchor="middle"><tspan x="115.0" y="334.0">Le Haillan</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="277.1,575.9 324.1,580.7 372.3,577.7 374.3,616.2 370.8,655.3 322.4,658.6 277.3,661.1 278.1,617.0"/>
+          <text text-anchor="middle"><tspan x="324.0" y="621.5">Gradignan</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="118.1,638.9 192.6,635.1 265.3,638.7 263.5,674.5 261.8,711.8 189.8,716.8 116.7,713.3 115.4,678.7"/>
+          <text text-anchor="middle"><tspan x="191.0" y="679.5">Canéjan</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="578.0,24.6 629.2,28.4 681.6,25.0 686.8,63.5 681.1,102.1 632.0,102.7 580.3,105.8 580.6,65.0"/>
+          <text text-anchor="middle"><tspan x="631.0" y="68.5">Ambès</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="611.3,166.1 677.6,162.4 742.8,160.9 745.1,209.2 741.4,248.4 675.2,249.8 616.0,247.5 612.2,204.5"/>
+          <text text-anchor="middle"><tspan x="678.0" y="210.5">Ambarès</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="563.0,261.4 607.9,266.6 662.5,262.3 661.8,304.3 656.9,341.0 608.3,344.7 562.3,341.8 562.1,305.4"/>
+          <text text-anchor="middle"><tspan x="610.0" y="307.5">Bassens</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="671.9,261.7 721.8,266.6 776.9,264.2 777.5,304.2 775.8,341.8 726.4,343.2 673.7,344.4 669.1,302.1"/>
+          <text text-anchor="middle"><tspan x="724.0" y="307.5">Carbon-Blanc</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="554.8,358.9 605.1,358.1 651.9,360.5 652.1,396.9 654.3,439.7 603.1,437.2 553.6,441.3 550.9,401.1"/>
+          <text text-anchor="middle"><tspan x="603.0" y="403.5">Lormont</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="670.0,360.8 723.3,358.2 780.0,363.0 776.6,400.5 775.1,441.2 725.2,438.2 666.6,442.0 668.0,400.6"/>
+          <text text-anchor="middle"><tspan x="723.0" y="403.5">Artigues</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="545.0,457.7 598.8,453.7 652.8,456.4 648.8,492.7 652.9,530.3 600.4,526.9 547.0,530.7 542.9,494.9"/>
+          <text text-anchor="middle"><tspan x="597.5" y="496.5">Cenon</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="548.8,548.8 600.7,547.3 657.7,545.2 658.2,587.5 658.6,624.7 598.9,623.6 550.4,628.4 550.3,587.1"/>
+          <text text-anchor="middle"><tspan x="602.0" y="589.5">Floirac</tspan></text>
+        </g>
+        <g class="map-zone zone-other" aria-hidden="true">
+          <polygon points="561.6,642.0 617.1,637.3 665.0,641.6 665.3,678.5 667.5,716.8 615.9,717.9 564.4,715.3 563.8,678.0"/>
+          <text text-anchor="middle"><tspan x="615.0" y="681.5">Bouliac</tspan></text>
+        </g>
+            </g>
+
+            <!-- Ponts -->
+            <line class="map-bridge" x1="492" y1="338" x2="536" y2="333"/>
+            <line class="map-bridge" x1="478" y1="433" x2="522" y2="430"/>
+
+            <!-- Nos secteurs -->
+            <g class="zones-covered">
+        <g class="map-zone zone-covered" data-zone="eysines" role="button" tabindex="0" aria-label="Secteur Eysines">
+          <polygon points="187.3,286.7 244.8,283.6 302.9,284.9 297.4,333.0 300.4,379.2 242.7,378.0 188.6,374.7 186.3,332.6"/>
+          <text text-anchor="middle"><tspan x="243.0" y="334.5">Eysines</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="bruges" role="button" tabindex="0" aria-label="Secteur Bruges">
+          <polygon points="311.3,202.9 363.2,205.8 403.1,202.8 408.4,247.9 408.0,293.3 362.3,293.6 312.2,294.3 316.1,250.9"/>
+          <text text-anchor="middle"><tspan x="360.0" y="254.0">Bruges</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="bacalan" role="button" tabindex="0" aria-label="Secteur Bacalan">
+          <polygon points="422.9,171.6 455.9,170.8 493.4,168.9 496.7,229.2 496.3,294.6 459.8,294.9 426.3,293.0 422.1,234.0"/>
+          <text text-anchor="middle"><tspan x="459.0" y="236.0">Bacalan</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="le-bouscat" role="button" tabindex="0" aria-label="Secteur Le Bouscat">
+          <polygon points="311.7,308.9 361.5,313.3 402.8,313.1 406.9,344.6 405.7,379.5 357.7,384.5 313.6,380.2 312.0,344.2"/>
+          <text text-anchor="middle"><tspan x="359.0" y="351.0">Le Bouscat</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="chartrons" role="button" tabindex="0" aria-label="Secteur Chartrons">
+          <polygon points="413.9,304.3 450.6,303.2 485.7,303.3 486.6,338.2 488.7,366.7 452.7,369.1 414.4,367.4 416.4,337.3"/>
+          <text text-anchor="middle"><tspan x="451.0" y="339.0">Chartrons</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="merignac" role="button" tabindex="0" aria-label="Secteur Mérignac">
+          <polygon points="70.7,389.2 186.4,389.6 296.9,388.1 298.0,436.9 301.6,475.4 182.0,478.5 71.4,479.9 68.4,436.5"/>
+          <text text-anchor="middle"><tspan x="185.0" y="438.0">Mérignac</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="bordeaux-centre" role="button" tabindex="0" aria-label="Secteur Bordeaux Centre">
+          <polygon points="311.8,394.8 393.1,391.7 471.0,389.4 474.2,429.8 474.9,469.1 394.4,471.5 312.1,469.5 312.1,430.1"/>
+          <text text-anchor="middle"><tspan x="392.0" y="429.0">Bordeaux</tspan><tspan x="392.0" y="443.0">Centre</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="pessac" role="button" tabindex="0" aria-label="Secteur Pessac">
+          <polygon points="77.9,492.6 171.9,491.8 262.3,489.0 266.9,558.1 261.6,626.5 173.7,625.2 80.1,622.1 82.3,558.0"/>
+          <text text-anchor="middle"><tspan x="172.0" y="562.0">Pessac</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="talence" role="button" tabindex="0" aria-label="Secteur Talence">
+          <polygon points="275.5,489.4 325.1,491.1 376.3,485.6 378.5,529.1 377.5,567.2 324.7,567.3 276.3,567.7 274.6,529.6"/>
+          <text text-anchor="middle"><tspan x="327.0" y="531.0">Talence</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="begles" role="button" tabindex="0" aria-label="Secteur Bègles">
+          <polygon points="387.1,482.1 428.2,485.3 470.6,485.2 470.2,521.9 467.5,560.5 433.0,558.6 392.0,559.8 387.0,522.6"/>
+          <text text-anchor="middle"><tspan x="430.0" y="525.0">Bègles</tspan></text>
+        </g>
+        <g class="map-zone zone-covered" data-zone="villenave" role="button" tabindex="0" aria-label="Secteur Villenave d'Ornon">
+          <polygon points="388.4,572.3 436.8,573.4 487.4,573.9 487.2,626.7 486.2,684.8 435.8,682.1 390.8,679.4 388.6,624.4"/>
+          <text text-anchor="middle"><tspan x="438.0" y="624.0">Villenave</tspan><tspan x="438.0" y="638.0">d'Ornon</tspan></text>
+        </g>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Panneau d'information -->
+        <div class="map-panel">
+          <div class="map-legend">
+            <span><i class="lg-gold"></i>Nos secteurs</span>
+            <span><i class="lg-other"></i>Autres communes</span>
+            <span><i class="lg-river"></i>La Garonne</span>
+          </div>
+
+          <div class="map-info" id="mapInfo" aria-live="polite">
+            <span class="map-info-kind" id="mapInfoKind">Bordeaux Métropole</span>
+            <h3 class="map-info-name" id="mapInfoName">11 secteurs couverts</h3>
+            <p class="map-info-desc" id="mapInfoDesc">De Bacalan à Villenave&nbsp;d'Ornon, nous intervenons sur l'ensemble de la rive gauche bordelaise, en vente comme en location.</p>
+          </div>
+
+          <div class="map-chips">
+          <button type="button" class="map-chip" data-zone="eysines">Eysines</button>
+          <button type="button" class="map-chip" data-zone="bruges">Bruges</button>
+          <button type="button" class="map-chip" data-zone="bacalan">Bacalan</button>
+          <button type="button" class="map-chip" data-zone="le-bouscat">Le Bouscat</button>
+          <button type="button" class="map-chip" data-zone="chartrons">Chartrons</button>
+          <button type="button" class="map-chip" data-zone="merignac">Mérignac</button>
+          <button type="button" class="map-chip" data-zone="bordeaux-centre">Bordeaux Centre</button>
+          <button type="button" class="map-chip" data-zone="pessac">Pessac</button>
+          <button type="button" class="map-chip" data-zone="talence">Talence</button>
+          <button type="button" class="map-chip" data-zone="begles">Bègles</button>
+          <button type="button" class="map-chip" data-zone="villenave">Villenave d'Ornon</button>
+          </div>
+
+          <div class="secteurs-foot">
+            <a href="contact.html" class="btn-outline-dark">Voir tous les secteurs &nbsp;→</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════ VIDÉO IMMERSIVE ══════════════════ -->
-  <!-- Levier 7 : visuel immersif photo + vidéo. ⚠️ Remplacez le lien "On en parle" -->
-  <!-- par l'URL de votre vidéo (YouTube/Vimeo) ou intégrez une balise <video>/<iframe>. -->
+  <!-- ══════════════════ VIDÉO IMMERSIVE (désactivée) ══════════════════ -->
+  <!-- Section masquée à la demande du client. Pour la réactiver, retirer les balises de commentaire ci-dessous.
+  [[ ══════════════════ VIDÉO IMMERSIVE ══════════════════ ]]
+  [[ Levier 7 : visuel immersif photo + vidéo. ⚠️ Remplacez le lien "On en parle" ]]
+  [[ par l'URL de votre vidéo (YouTube/Vimeo) ou intégrez une balise <video>/<iframe>. ]]
   <section class="video-section">
     <div class="video-wrap">
       <span class="eyebrow">En images</span>
@@ -1390,6 +1597,8 @@
       </div>
     </div>
   </section>
+
+  -->
 
   <!-- ══════════════════ CTA ══════════════════ -->
   <section class="cta-section">
@@ -1414,7 +1623,9 @@
       <div class="footer-top">
 
         <div>
-          <img src="IMG/Logo_MilleniumImmoConseil_Q_fdblc.jpg" alt="Millenium Immo Conseil" class="f-logo" loading="lazy" decoding="async">
+          <a href="index.html" class="f-logo-link" aria-label="Millenium Immo Conseil – accueil">
+            <img src="IMG/logo-millenium-blanc.png" alt="Millenium Immo Conseil" class="f-logo" width="832" height="296" loading="lazy" decoding="async">
+          </a>
           <p class="f-brand-desc">Votre expert immobilier professionnel et résidentiel en Bordeaux Métropole. Conseil, transaction et accompagnement sur-mesure.</p>
         </div>
 
@@ -1424,7 +1635,6 @@
             <li><a href="catalogue.html">Nos biens</a></li>
             <li><a href="professionnel.html">Immobilier professionnel</a></li>
             <li><a href="residentiel.html">Immobilier résidentiel</a></li>
-            <li><a href="investissement.html">Investissement</a></li>
             <li><a href="honoraires.html">Honoraires</a></li>
             <li><a href="mentions-legales.html">Mentions légales</a></li>
             <li><a href="mentions-legales.html">Politique de confidentialité</a></li>
@@ -1447,7 +1657,7 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
-            <span>+33 (0)5 XX XX XX XX</span>
+            <span>05 56 96 27 21<br>06 82 21 35 47</span>
           </div>
           <div class="f-contact-row">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1461,7 +1671,7 @@
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
               <circle cx="12" cy="10" r="3"/>
             </svg>
-            <span>Bordeaux Métropole</span>
+            <span>7 rue Descartes<br>33000 Bordeaux</span>
           </div>
         </div>
 
@@ -1502,6 +1712,70 @@
         expressForm.querySelectorAll('input').forEach(i => i.value = '');
       });
     }
+
+    // Carte interactive des secteurs
+    (function () {
+      const map = document.querySelector('.secteurs-map');
+      if (!map) return;
+
+      const SECTEURS = {
+      'eysines': { name: 'Eysines', kind: 'Commune', desc: 'Cadre verdoyant aux portes de Bordeaux : maisons avec jardin et prix encore maîtrisés.' },
+      'bruges': { name: 'Bruges', kind: 'Commune', desc: 'Familles, écoles et programmes neufs le long du tram C, à 10 minutes du centre.' },
+      'bacalan': { name: 'Bacalan', kind: 'Quartier de Bordeaux', desc: 'Bassins à Flot, Cité du Vin : le quartier du neuf et du rendement locatif.' },
+      'le-bouscat': { name: 'Le Bouscat', kind: 'Commune', desc: 'Résidentiel haut de gamme : belles échoppes, parc Bordelais et commerces de proximité.' },
+      'chartrons': { name: 'Chartrons', kind: 'Quartier de Bordeaux', desc: "Antiquaires, quais et échoppes rénovées : l'un des quartiers les plus prisés de Bordeaux." },
+      'merignac': { name: 'Mérignac', kind: 'Commune', desc: 'Pôle économique et aéroportuaire : maisons familiales et résidences récentes.' },
+      'bordeaux-centre': { name: 'Bordeaux Centre', kind: 'Quartier de Bordeaux', desc: "Triangle d'Or, Saint-Pierre, Hôtel de Ville : l'hypercentre et ses immeubles pierre." },
+      'pessac': { name: 'Pessac', kind: 'Commune', desc: "Campus, quartiers pavillonnaires et forte demande locative toute l'année." },
+      'talence': { name: 'Talence', kind: 'Commune', desc: 'Étudiants et jeunes actifs, à deux pas du centre par le tram B.' },
+      'begles': { name: 'Bègles', kind: 'Commune', desc: 'Quartier en pleine mutation : Terres Neuves, bords de Garonne et nouveaux programmes.' },
+      'villenave': { name: "Villenave d'Ornon", kind: 'Commune', desc: 'Accès direct à la rocade, maisons de famille et primo-accession.' }
+      };
+      const DEFAUT = {
+        kind: 'Bordeaux Métropole',
+        name: '11 secteurs couverts',
+        desc: "De Bacalan à Villenave\u00a0d'Ornon, nous intervenons sur l'ensemble de la rive gauche bordelaise, en vente comme en location."
+      };
+
+      const elKind = document.getElementById('mapInfoKind');
+      const elName = document.getElementById('mapInfoName');
+      const elDesc = document.getElementById('mapInfoDesc');
+      const zones  = Array.from(map.querySelectorAll('.zone-covered'));
+      const chips  = Array.from(document.querySelectorAll('.map-chip'));
+      const bloc   = document.querySelector('.secteurs-layout');
+      let epingle  = null;
+
+      function afficher(id) {
+        const d = (id && SECTEURS[id]) || DEFAUT;
+        elKind.textContent = d.kind;
+        elName.textContent = d.name;
+        elDesc.innerHTML   = d.desc;
+        zones.forEach(z => z.classList.toggle('is-active', z.dataset.zone === id));
+        chips.forEach(c => c.classList.toggle('is-active', c.dataset.zone === id));
+      }
+
+      function brancher(el, id) {
+        el.addEventListener('mouseenter', () => afficher(id));
+        el.addEventListener('focus',      () => afficher(id));
+        el.addEventListener('click', () => {
+          epingle = (epingle === id) ? null : id;
+          afficher(epingle);
+        });
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            epingle = (epingle === id) ? null : id;
+            afficher(epingle);
+          }
+        });
+      }
+
+      zones.forEach(z => brancher(z, z.dataset.zone));
+      chips.forEach(c => brancher(c, c.dataset.zone));
+
+      // en quittant la zone, on revient au secteur épinglé (ou à l'état par défaut)
+      if (bloc) bloc.addEventListener('mouseleave', () => afficher(epingle));
+    })();
   </script>
 </body>
 </html>
