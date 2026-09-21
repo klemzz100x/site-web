@@ -510,6 +510,16 @@ header {
 .fee-table tbody tr:hover { background: var(--light-bg); }
 .fee-table td:last-child { font-weight: 700; color: var(--gold); white-space: nowrap; }
 .fee-table-wrap { overflow-x: auto; border: 1px solid rgba(0,0,0,0.08); border-radius: 6px; }
+.fee-table td:last-child { vertical-align: top; }
+.fee-table .fee-note {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--gray);
+  letter-spacing: 0;
+  white-space: normal;
+}
 .note { font-size: 0.74rem; color: var(--gray); margin-top: 14px; line-height: 1.6; }
 
 /* ── ÉQUIPE / À PROPOS ──────────────────── */
@@ -745,3 +755,23 @@ footer {
 .admin-panel h3 { font-size: 1rem; font-weight: 700; margin-bottom: 20px; }
 .form-feedback.error { color: #B23A2E; }
 .hidden { display: none !important; }
+
+/* ── Réseaux sociaux (footer) ── */
+.f-socials { display: flex; gap: 10px; margin-top: 18px; }
+.f-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.55);
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+.f-socials a:hover {
+  color: #111;
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.f-socials svg { width: 16px; height: 16px; }
