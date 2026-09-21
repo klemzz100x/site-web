@@ -1106,6 +1106,11 @@
       line-height: 1.5;
     }
     .express-feedback.show { display: block; }
+    .express-feedback.error {
+      background: #fdecea;
+      border-left-color: #B23A2E;
+      color: #8c2d23;
+    }
 
     @media (min-width: 640px) {
       .stats-grid { grid-template-columns: repeat(4, 1fr); }
@@ -1348,14 +1353,13 @@
             <label for="exp-tel">Téléphone</label>
             <input type="tel" id="exp-tel" name="tel" autocomplete="tel" required>
           </div>
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true">
           <button type="submit">Recevoir mon estimation &nbsp;→</button>
           <p class="express-note">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             Réponse sous 2&nbsp;h ouvrées — un conseiller vous rappelle.
           </p>
-          <p class="express-feedback" id="expressFeedback">
-            Merci&nbsp;! Votre demande est enregistrée. Un conseiller vous rappelle dans les plus brefs délais (sous 2&nbsp;h ouvrées).
-          </p>
+          <p class="express-feedback" id="expressFeedback" role="status" aria-live="polite"></p>
         </form>
       </div>
 
@@ -1671,19 +1675,11 @@
       toggle.classList.remove('open');
     }));
 
-    // Formulaire express : confirmation immédiate (réponse automatique au lead — levier 6)
-    const expressForm = document.getElementById('expressForm');
-    if (expressForm) {
-      expressForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const fb = document.getElementById('expressFeedback');
-        if (fb) fb.classList.add('show');
-        expressForm.querySelector('button').textContent = 'Demande envoyée ✓';
-        expressForm.querySelectorAll('input').forEach(i => i.value = '');
-      });
-    }
+    // L'envoi du formulaire express est géré par js/forms.js
 
   </script>
+  <script src="js/forms-config.js"></script>
+  <script src="js/forms.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin=""></script>
   <script src="js/secteurs-geo.js"></script>
   <script src="js/secteurs-map.js"></script>

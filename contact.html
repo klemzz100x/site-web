@@ -91,8 +91,9 @@
               <input type="checkbox" required>
               <span>J'accepte que mes informations soient utilisées pour être recontacté(e) concernant ma demande.</span>
             </label>
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true">
             <button type="submit" class="btn-cta-gold">Envoyer ma demande &nbsp;→</button>
-            <p class="form-feedback" id="formFeedback">Merci&nbsp;! Votre demande est enregistrée. Un conseiller vous rappelle sous 2&nbsp;h ouvrées.</p>
+            <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
           </form>
         </div>
 
@@ -191,5 +192,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/forms-config.js"></script>
+  <script src="js/forms.js"></script>
 </body>
 </html>

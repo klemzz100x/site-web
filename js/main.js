@@ -14,14 +14,5 @@
     }));
   }
 
-  /* Formulaire de contact — feedback simple sans backend */
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const fb = document.getElementById('formFeedback');
-      if (fb) fb.classList.add('show');
-      form.reset();
-    });
-  }
+  /* L'envoi des formulaires est géré par js/forms.js */
 })();
