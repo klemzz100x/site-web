@@ -19,7 +19,7 @@
   ];
 
   var DEFAUT = {
-    kind: 'Bordeaux Métropole',
+    kind: 'Métropole bordelaise',
     name: '28 secteurs couverts',
     desc: "De Bacalan à Villenave d'Ornon, nous intervenons sur l'ensemble de la rive gauche bordelaise, en vente comme en location."
   };
