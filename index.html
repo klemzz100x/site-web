@@ -1212,14 +1212,13 @@
     .video-play svg { color: #111; margin-left: 3px; }
     @media (min-width: 1024px) { .video-section { padding: 96px 40px; } }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="">
 </head>
 <body>
 
   <!-- ══════════════════ HEADER ══════════════════ -->
   <header>
     <div class="header-inner">
-      <a href="index.html" class="logo"><img src="IMG/Logo_MilleniumImmoConseil.jpg" alt="Millenium Immo Conseil"></a>
+      <a href="index.html" class="logo"><picture><source srcset="IMG/Logo_MilleniumImmoConseil.avif" type="image/avif"><img src="IMG/Logo_MilleniumImmoConseil.jpg" alt="Millenium Immo Conseil"></picture></a>
 
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
@@ -1491,59 +1490,6 @@
     </div>
   </section>
 
-  <!-- ══════════════════ SECTEURS ══════════════════ -->
-  <section class="secteurs" id="secteurs">
-    <div class="secteurs-wrap">
-      <div class="secteurs-head">
-        <h2 class="section-h2">28 secteurs couverts sur la Métropole bordelaise</h2>
-        <p class="secteurs-sub">Bordeaux et sa métropole. Survolez une zone rouge sur la carte, ou sélectionnez un secteur dans la liste.</p>
-      </div>
-
-      <div class="secteurs-layout">
-
-        <div class="map-card">
-          <div id="secteursMap" role="application" aria-label="Carte des secteurs d'intervention de Millenium Immo Conseil sur la Métropole bordelaise"></div>
-        </div>
-
-        <div class="map-panel">
-          <div class="map-legend">
-            <span><i class="lg-gold"></i>Nos secteurs</span>
-            <span><i class="lg-pin"></i>Quartiers bordelais</span>
-            <span><i class="lg-other"></i>Reste de la métropole</span>
-            <span><i class="lg-eau"></i>La Garonne</span>
-          </div>
-
-          <div class="map-info" id="mapInfo" aria-live="polite">
-            <span class="map-info-kind" id="mapInfoKind">Métropole bordelaise</span>
-            <h3 class="map-info-name" id="mapInfoName">28 secteurs couverts</h3>
-            <p class="map-info-desc" id="mapInfoDesc">De Bacalan à Villenave&nbsp;d'Ornon, nous intervenons sur l'ensemble de la rive gauche bordelaise, en vente comme en location.</p>
-          </div>
-
-          <div class="map-chips">
-            <button type="button" class="map-chip" data-zone="bordeaux-centre">Bordeaux Centre</button>
-            <button type="button" class="map-chip" data-zone="chartrons">Chartrons</button>
-            <button type="button" class="map-chip" data-zone="bacalan">Bacalan</button>
-            <button type="button" class="map-chip" data-zone="33281">Mérignac</button>
-            <button type="button" class="map-chip" data-zone="33318">Pessac</button>
-            <button type="button" class="map-chip" data-zone="33522">Talence</button>
-            <button type="button" class="map-chip" data-zone="33069">Le Bouscat</button>
-            <button type="button" class="map-chip" data-zone="33039">Bègles</button>
-            <button type="button" class="map-chip" data-zone="33075">Bruges</button>
-            <button type="button" class="map-chip" data-zone="33162">Eysines</button>
-            <button type="button" class="map-chip" data-zone="33550">Villenave d'Ornon</button>
-          </div>
-
-          <button type="button" class="map-reset" id="mapReset">Vue d'ensemble</button>
-
-          <div class="secteurs-foot">
-            <a href="contact.html" class="btn-outline-dark">Voir tous les secteurs &nbsp;→</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- ══════════════════ VIDÉO IMMERSIVE (désactivée) ══════════════════ -->
   <!-- Section masquée à la demande du client. Pour la réactiver, retirer les balises de commentaire ci-dessous.
   [[ ══════════════════ VIDÉO IMMERSIVE ══════════════════ ]]
@@ -1681,8 +1627,5 @@
   </script>
   <script src="js/forms-config.js"></script>
   <script src="js/forms.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin=""></script>
-  <script src="js/secteurs-geo.js"></script>
-  <script src="js/secteurs-map.js"></script>
 </body>
 </html>
