@@ -11,7 +11,7 @@
  * Tant qu'elle est vide, les formulaires n'affichent PAS de fausse confirmation :
  * ils invitent le visiteur à appeler ou à écrire directement. Voir js/forms.js.
  */
-window.WEB3FORMS_KEY = "";
+window.WEB3FORMS_KEY = "1d6c5965-41fa-411f-8dc0-5abd1369268a";
 
 /* Adresse de repli affichée au visiteur si l'envoi échoue ou n'est pas configuré. */
 window.CONTACT_FALLBACK = {
