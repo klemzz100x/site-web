@@ -1,4 +1,4 @@
-/* Envoi des formulaires vers contact@milleniumimmoconseil.fr via Web3Forms.
+/* Envoi des formulaires vers contact.milleniumimmoconseil@gmail.com via Web3Forms.
  * Partagé par le formulaire de contact (contact.html) et le formulaire express
  * de la page d'accueil. Nécessite js/forms-config.js chargé avant ce script. */
 (function () {
